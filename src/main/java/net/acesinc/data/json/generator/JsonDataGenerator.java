@@ -17,19 +17,26 @@ import net.acesinc.data.json.generator.log.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.eclipse.paho.client.mqttv3.MqttException;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 
 /**
  *
  * @author andrewserff
  */
+@Component
 public class JsonDataGenerator {
 
     private static final Logger log = LogManager.getLogger(JsonDataGenerator.class);
 
     private SimulationRunner simRunner;
+
+    //@Value("companyInfoConfig.json")
     private String simConfigFile;
 
-    public JsonDataGenerator(String simConfigString) {
+    @Autowired
+    public JsonDataGenerator(@Value("${dmConfig}") String simConfigString) {
         simConfigFile = simConfigString;
         try {
             log.debug("Creating Simulation Runner using Simulation Config [ " + simConfigString + " ]");
@@ -117,39 +124,39 @@ public class JsonDataGenerator {
         return simRunner.isRunning();
     }
 
-    public static void main(String[] args) {
-        String simConfig = "companyInfoConfig.json";
-//        String simConfig = "defaultSimConfig.json";
-        if (args.length > 0) {
-            simConfig = args[0];
-            log.info("Overriding Simulation Config file from command line to use [ " + simConfig + " ]");
-        }
-
-        final JsonDataGenerator gen = new JsonDataGenerator(simConfig);
-
-        final Thread mainThread = Thread.currentThread();
-        Runtime.getRuntime().addShutdownHook(new Thread() {
-            public void run() {
-                log.info("Shutdown Hook Invoked.  Shutting Down Loggers");
-                gen.stopRunning();
-                try {
-                    mainThread.join();
-                } catch (InterruptedException ex) {
-                    //oh well
-                }
-            }
-        });
-
-        gen.startRunning();
-        while (gen.isRunning()) {
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException ex) {
-                //wakie wakie!
-            }
-        }
-
-    }
+//    public static void main(String[] args) {
+//        String simConfig = "companyInfoConfig.json";
+////        String simConfig = "defaultSimConfig.json";
+//        if (args.length > 0) {
+//            simConfig = args[0];
+//            log.info("Overriding Simulation Config file from command line to use [ " + simConfig + " ]");
+//        }
+//
+//        final JsonDataGenerator gen = new JsonDataGenerator(simConfig);
+//
+//        final Thread mainThread = Thread.currentThread();
+//        Runtime.getRuntime().addShutdownHook(new Thread() {
+//            public void run() {
+//                log.info("Shutdown Hook Invoked.  Shutting Down Loggers");
+//                gen.stopRunning();
+//                try {
+//                    mainThread.join();
+//                } catch (InterruptedException ex) {
+//                    //oh well
+//                }
+//            }
+//        });
+//
+//        gen.startRunning();
+//        while (gen.isRunning()) {
+//            try {
+//                Thread.sleep(1000);
+//            } catch (InterruptedException ex) {
+//                //wakie wakie!
+//            }
+//        }
+//
+//    }
 
     /**
      * @return the simConfigFile
