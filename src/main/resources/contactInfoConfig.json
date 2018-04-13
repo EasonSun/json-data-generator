@@ -1,0 +1,9 @@
+{
+  "workflows": [{
+    "workflowName": "contactInfo",
+    "workflowFilename": "contactInfoWorkflow.json"
+  }],
+  "producers": [{
+    "type":"logger"
+  }]
+}

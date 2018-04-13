@@ -51,12 +51,12 @@ public class JsonGenerator {
     }
     
     public static void main(String... args) {
-        String config = "config6.json";
+        String simConfig = "config1.json";
         try {
             ObjectMapper mapper = new ObjectMapper();
             JsonGenerator gen = new JsonGenerator();
-            log.info("Generated json Map: " + mapper.writeValueAsString(gen.testMapGenerator(config)));
-            log.info("Generated flattened json Map: " + gen.testFlatJsonGenerator(config));
+            log.info("Generated json Map: " + mapper.writeValueAsString(gen.testMapGenerator(simConfig)));
+            log.info("Generated flattened json Map: " + gen.testFlatJsonGenerator(simConfig));
             JsonGenerator gen2 = new JsonGenerator();
             log.info("Generated json List: " + gen2.testListGenerator("config3.json"));
         } catch (IOException ex) {

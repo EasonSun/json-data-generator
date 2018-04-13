@@ -1,0 +1,14 @@
+{
+  "workflows": [{
+    "workflowName": "companyInfo",
+    "workflowFilename": "companyInfoWorkflow.json"
+  }],
+  "producers": [{
+    "type":"logger"
+  },
+    {
+      "type": "http-post",
+      "url": "https://trinity-prfqdc.intuit.com/trinity/v1/sbg-data-insights"
+    }
+  ]
+}

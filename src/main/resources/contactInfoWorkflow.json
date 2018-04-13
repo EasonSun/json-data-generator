@@ -1,0 +1,65 @@
+{
+	"eventFrequency": 1000,
+    "varyEventFrequency": true,
+    "repeatWorkflow": true,
+    "timeBetweenRepeat": 1000,
+    "varyRepeatFrequency": true,
+    "steps": [{
+        "config": [{
+    		"userID" : "numeric(1000000,9999999)",
+    		"ignore" : {
+	    		"firstName" : "firstName()",
+	    		"lastName" : "lastName()",
+	    		"company" : "company()"
+	    	},
+	    	"username" : "stringMerge(.,this.ignore.firstName,this.ignore.lastName)",
+    		"fullName": [{
+                "salutation": "random('Mr.','Mrs.','Master','Ms.','Sir','Madam')",
+                "givenName": "this.ignore.firstName",
+                "surName": "this.ignore.lastName"
+	        }],
+	        "displayName": "stringMerge(,this.ignore.firstName,this.ignore.lastName)",
+	        "email": {
+	                "primary": true,
+	                "address": "stringMerge(@,this.username,this.ignore.company)",
+	                "status": "CONFIRMED"
+	        },
+	        "alternateEmail": [
+	        	"repeat(0,3)",
+	        	{
+	                "primary": false,
+	                "address": "johnsmith168@yahoo.com",
+	                "status": "CONFIRMED"
+	        }],	
+	        "address": [
+	        	"repeat(0,3)",
+	        	{
+	                "id": "48612982",
+	                "type": "MAIN",
+	                "primary": true,
+	                "address1": "7535 Torrey Santa Fe Rd",
+	                "address2": "",
+	                "cityOrLocality": "San Diego",
+	                "stateOrProvince": "California",
+	                "postalCode": "92129",
+	                "country": "US",
+	                "shared": false,
+	                "active": true,
+	                "defaultShipping": false,
+	                "defaultBilling": false
+	        	}
+	        ],
+	        "phone": [
+	        	"repeat(0,3)",	
+                {
+                    "id": "15542911",
+                    "type": "MAIN",
+                    "primary": false,
+                    "phoneNumber": "+1 8582158457",
+                    "status": "UNKNOWN"
+                }
+	        ]
+		}],
+        "duration": 0
+    }]
+ }

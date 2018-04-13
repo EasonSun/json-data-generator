@@ -1,0 +1,56 @@
+{
+  "eventFrequency": 1000,
+  "varyEventFrequency": true,
+  "repeatWorkflow": true,
+  "timeBetweenRepeat": 1000,
+  "varyRepeatFrequency": true,
+  "steps": [{
+    "config": [{
+      "realmID": "integer(1000000,9999999)",
+      "companyID": "integer(1000000,9999999)",
+      "source": "random('payroll', 'oii')",
+      "displayName": "random('Bobs bakery', 'Walmart', 'Intuit')",
+      "serviceAccount": false,
+      "name": "random('Bobs bakery', 'Walmart', 'Intuit')",
+      "legalName": "random('Bobs bakery', 'Walmart', 'Intuit')",
+      "phone": [
+        "repeat(0,3)",
+        {
+          "id": "15542911",
+          "type": "MAIN",
+          "deviceType": "",
+          "primary": false,
+          "phoneNumber": "+1 8582158457",
+          "status": "UNKNOWN"
+        }
+      ],
+      "type": "Direct",
+      "country": "country()",
+      "addresses": [
+        "repeat(0,3)",
+        {
+          "addressId": "5216730",
+          "addressLine1": "32 Market Street",
+          "city": "San Diego",
+          "country": "US",
+          "postalCode": "92130",
+          "state": "CA",
+          "isPrimary": "true",
+          "type": "Mailing"
+        }
+      ],
+      "email": {
+        "type": "NONE",
+        "primary": false,
+        "address": "bob@BobBakery.com"
+      },
+      "alternateEmail": {
+        "type": "NONE",
+        "primary": false,
+        "address": "bob@BobBakery.com"
+      },
+      "isDeleted": false
+    }],
+    "duration": 0
+  }]
+}
