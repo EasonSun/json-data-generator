@@ -32,10 +32,11 @@ public class JsonDataGenerator {
 
     private SimulationRunner simRunner;
 
-    //@Value("companyInfoConfig.json")
+    @Value("companyInfoConfig.json")
     private String simConfigFile;
 
     //@Autowired
+    //public JsonDataGenerator(@Value("${dmConfig}") String simConfigString) {
     public JsonDataGenerator(@Value("${dmConfig}") String simConfigString) {
         simConfigFile = simConfigString;
         try {
