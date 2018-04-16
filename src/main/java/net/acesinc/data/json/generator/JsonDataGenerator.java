@@ -49,7 +49,6 @@ public class JsonDataGenerator {
                 // consider injection and bind by type
                 String elType = (String) elProps.get("type");
                 log.info("Adding" + elType + "Producer");
-                @Qualifier(elType) EventLogger
                 switch (elType) {
                     case "logger": {
                         // should I keep inside each get method?
