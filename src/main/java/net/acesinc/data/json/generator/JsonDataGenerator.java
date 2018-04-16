@@ -35,7 +35,7 @@ public class JsonDataGenerator {
     //@Value("companyInfoConfig.json")
     private String simConfigFile;
 
-    @Autowired
+    //@Autowired
     public JsonDataGenerator(@Value("${dmConfig}") String simConfigString) {
         simConfigFile = simConfigString;
         try {
